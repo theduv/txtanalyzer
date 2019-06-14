@@ -17,7 +17,7 @@ for arg in sys.argv[1:] :
 if os.path.exists("./skiplist.txt") :
     fd2 = open("skiplist.txt", "r")
 if 'fd2' in locals() and fd2 != -1 :
-    skiplist = list(filter(bool, fd2.read().split('\n')))
+    skiplist = list(filter(bool, fd2.read().split()))
 terms = {}
 for word in content :
     if word in terms.keys() :
@@ -25,5 +25,5 @@ for word in content :
     else :
         terms[word] = 1
 for key, value in sorted(terms.items(), reverse=True, key=lambda item: item[1]) :
-    if 'skiplist' not in locals() or key not in skiplist :
+    if ('skiplist' not in locals() or key not in skiplist) and terms[key] > 1 :
         print("%s : %s" % (key, terms[key]))
