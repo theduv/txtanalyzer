@@ -13,9 +13,7 @@ for arg in sys.argv[1:] :
         if fd == -1 :
             sys.stderr.write("Error: could not open " + arg)
         else :
-            content += list(filter(bool, fd.read().split('\n')))
-            str = ' '.join(content)
-            content += list(filter(bool, str.split(' ')))
+            content += list(filter(bool, fd.read().split()))
 if os.path.exists("./skiplist.txt") :
     fd2 = open("skiplist.txt", "r")
 if 'fd2' in locals() and fd2 != -1 :
